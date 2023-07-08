@@ -1,0 +1,44 @@
+class UnitsController < ApplicationController
+  before_action :set_unit, only: [:show, :update, :destroy]
+
+  # GET /units/:id
+  def show
+    render json: @unit
+  end
+
+  # POST /units
+  def create
+    @unit = Unit.new(unit_params)
+
+    if @unit.save
+      render json: @unit, status: :created
+    else
+      render json: @unit.errors, status: :unprocessable_entity
+    end
+  end
+
+  # PATCH/PUT /units/:id
+  def update
+    if @unit.update(unit_params)
+      render json: @unit
+    else
+      render json: @unit.errors, status: :unprocessable_entity
+    end
+  end
+
+  # DELETE /units/:id
+  def destroy
+    @unit.destroy
+    head :no_content
+  end
+
+  private
+
+  def set_unit
+    @unit = Unit.find(params[:id])
+  end
+
+  def unit_params
+    params.require(:unit).permit(:number, :floor, :size, :building_id)
+  end
+end
