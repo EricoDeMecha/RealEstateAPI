@@ -1,9 +1,10 @@
 class UnitsController < ApplicationController
+  include ErrorHandling
   before_action :set_unit, only: [:show, :update, :destroy]
 
   # GET /units/:id
   def show
-    render json: @unit
+    render json: @unit, status: :ok
   end
 
   # POST /units

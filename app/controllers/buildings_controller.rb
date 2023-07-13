@@ -1,9 +1,10 @@
 class BuildingsController < ApplicationController
+  include ErrorHandling
   before_action :set_building, only: [:show, :update, :destroy]
 
   # GET /buildings/:id
   def show
-    render json: @building
+    render json: @building, status: :ok
   end
 
   # POST /buildings
@@ -20,7 +21,7 @@ class BuildingsController < ApplicationController
   # PATCH/PUT /buildings/:id
   def update
     if @building.update(building_params)
-      render json: @building
+      render json: @building, status: :ok
     else
       render json: @building.errors, status: :unprocessable_entity
     end
@@ -29,7 +30,7 @@ class BuildingsController < ApplicationController
   # DELETE /buildings/:id
   def destroy
     @building.destroy
-    head :no_content
+    render json: { message: "Record Deleted Successfully"}, status: :ok
   end
 
   private

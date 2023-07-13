@@ -1,40 +1,42 @@
 class OwnersController < ApplicationController
-  before_action :set_owner, only: [:show, :update, :destroy]
+
+  include ErrorHandling
+
+  before_action :find_owner, only: [:show, :update, :destroy]
 
   # GET /owners/:id
   def show
-    render json: @owner
+    render json: @owner, status: :ok
   end
 
   # POST /owners
   def create
     @owner = Owner.new(owner_params)
-
     if @owner.save
       render json: @owner, status: :created
     else
-      render json: @owner.errors, status: :unprocessable_entity
+      render json: { error: @owner.errors.full_messages}, status: :unprocessable_entity
     end
   end
 
   # PATCH/PUT /owners/:id
   def update
     if @owner.update(owner_params)
-      render json: @owner
+      render json: @owner, status: :ok
     else
-      render json: @owner.errors, status: :unprocessable_entity
+      render json: {error: @owner.errors.full_messages}, status: :unprocessable_entity
     end
   end
 
   # DELETE /owners/:id
   def destroy
     @owner.destroy
-    head :no_content
+    render json: { message: 'User successfully deleted' }, status: :ok
   end
 
   private
 
-  def set_owner
+  def find_owner
     @owner = Owner.find(params[:id])
   end
 

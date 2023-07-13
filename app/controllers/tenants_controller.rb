@@ -1,6 +1,7 @@
 class TenantsController < ApplicationController
-  before_action :set_tenant, only: [:show, :update, :destroy]
+  include ErrorHandling
 
+  before_action :set_tenant, only: [:show, :update, :destroy]
   # GET /tenants/:id
   def show
     render json: @tenant
@@ -29,7 +30,7 @@ class TenantsController < ApplicationController
   # DELETE /tenants/:id
   def destroy
     @tenant.destroy
-    head :no_content
+    render json: {message: "Tenant Deleted Successfully"},status: :ok
   end
 
   private

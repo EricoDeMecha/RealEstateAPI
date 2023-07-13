@@ -1,26 +1,29 @@
 class RentPaymentsController < ApplicationController
+
+  include ErrorHandling
+
   before_action :set_tenant
   before_action :set_rent_payment, only: [:show, :update, :destroy]
 
   # GET /tenants/:tenant_id/rent_payments
   def index
-    rent_payments = @tenant.rent_payments
-    render json: rent_payments
+    @rent_payments = @tenant.rent_payments
+    render json: @rent_payments, status: :ok
   end
 
   # GET /rent_payments/:id
   def show
-    render json: @rent_payment
+    render json: @rent_payment, status: :ok
   end
 
   # POST /tenants/:tenant_id/rent_payments
   def create
-    rent_payment = @tenant.rent_payments.build(rent_payment_params)
+    @rent_payment = @tenant.rent_payments.build(rent_payment_params)
 
-    if rent_payment.save
-      render json: rent_payment, status: :created
+    if @rent_payment.save
+      render json: @rent_payment, status: :created
     else
-      render json: rent_payment.errors, status: :unprocessable_entity
+      render json: @rent_payment.errors, status: :unprocessable_entity
     end
   end
 
@@ -36,7 +39,7 @@ class RentPaymentsController < ApplicationController
   # DELETE /rent_payments/:id
   def destroy
     @rent_payment.destroy
-    head :no_content
+    render json:  { message: "Rent Payment deleted"}, status: :ok
   end
 
   private

@@ -1,33 +1,34 @@
 class UtilityPaymentsController < ApplicationController
+  include ErrorHandling
   before_action :set_tenant
   before_action :set_utility_payment, only: [:show, :update, :destroy]
 
   # GET /tenants/:tenant_id/utility_payments
   def index
-    utility_payments = @tenant.utility_payments
-    render json: utility_payments
+    @utility_payments = @tenant.utility_payments
+    render json: @utility_payments,  status: :ok
   end
 
   # GET /utility_payments/:id
   def show
-    render json: @utility_payment
+    render json: @utility_payment, status: :ok
   end
 
   # POST /tenants/:tenant_id/utility_payments
   def create
-    utility_payment = @tenant.utility_payments.build(utility_payment_params)
+    @utility_payment = @tenant.utility_payments.build(utility_payment_params)
 
-    if utility_payment.save
-      render json: utility_payment, status: :created
+    if @utility_payment.save
+      render json: @utility_payment, status: :created
     else
-      render json: utility_payment.errors, status: :unprocessable_entity
+      render json: @utility_payment.errors, status: :unprocessable_entity
     end
   end
 
   # PATCH/PUT /utility_payments/:id
   def update
     if @utility_payment.update(utility_payment_params)
-      render json: @utility_payment
+      render json: @utility_payment, status: :ok
     else
       render json: @utility_payment.errors, status: :unprocessable_entity
     end
@@ -36,7 +37,7 @@ class UtilityPaymentsController < ApplicationController
   # DELETE /utility_payments/:id
   def destroy
     @utility_payment.destroy
-    head :no_content
+    render json: { message: "Record Deleted Successfully"}, status: :ok
   end
 
   private
