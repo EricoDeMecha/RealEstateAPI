@@ -2,6 +2,16 @@ class UnitsController < ApplicationController
   include ErrorHandling
   before_action :set_unit, only: [:show, :update, :destroy]
 
+  def all
+    units = Unit.all
+    render json: units, status: :ok
+  end
+
+  def count
+    count = Unit.count
+    render json: { count: count }, status: :ok
+  end
+
   # GET /units/:id
   def show
     render json: @unit, status: :ok

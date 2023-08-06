@@ -9,6 +9,16 @@ class OwnersController < ApplicationController
     render json: @owner, status: :ok
   end
 
+  # GET /owners
+  def all
+    owners = Owner.all
+    render json: owners, stats: :ok
+  end
+  #GET /owners/count
+  def count
+    count = Owner.count
+    render json: {count: count}, status: :ok
+  end
   # POST /owners
   def create
     @owner = Owner.new(owner_params)

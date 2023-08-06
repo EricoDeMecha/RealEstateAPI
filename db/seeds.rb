@@ -15,7 +15,7 @@ Generate 40 buildings
   Building.create!(
     address: Faker::Address.full_address,
     number_of_floors: rand(1..20),
-    amenities: %w["Swimming pool", "Gym", "Spa", "Free Wi-Fi", "Restaurant", "Bar", "Laundry service", "Parking"].sample,
+    amenities: %w["Swimming pool" "Gym" "Spa" "Free Wi-Fi" "Restaurant" "Bar" "Laundry service" "Parking"].sample,
     owner_id: rand(1..20)
   )
 end
