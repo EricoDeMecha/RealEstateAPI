@@ -1,12 +1,12 @@
 databases:
   - name: postgres
     ipAllowList: []
-    databaseName: real-estate-db
+    databaseName: real_estate_db
     user: proms
 
 services:
   - type: web
-    name: real-estate-services
+    name: real_estate_services
     env: ruby
     buildCommand: "./render-build.sh"
     startCommand: "bundle exec rails s"
