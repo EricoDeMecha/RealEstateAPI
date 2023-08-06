@@ -11,5 +11,7 @@ class RoutesController < ApplicationController
       }
       @route_info << info
     end
+
+    render json: @route_info, status: :ok
   end
 end
