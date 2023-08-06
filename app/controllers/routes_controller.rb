@@ -11,5 +11,6 @@ class RoutesController < ApplicationController
       }
       @route_info << info
     end
+    render json: @route_info, status: :ok # comment this line to render the root page as a web page instead of json
   end
 end

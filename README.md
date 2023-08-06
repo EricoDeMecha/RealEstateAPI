@@ -1,11 +1,7 @@
-## Real Estate application API 
-This is an API sample of an API application for real-estate management 
+# Real Estate application API 
+This is a simple API application for real-estate management 
 
-### Routes
+# Deployment
 
-- Setup project
-- Print routes with 
-    ```ruby
-    rail routes
-    ```
-- 
+- Checkout deploy branch
+
