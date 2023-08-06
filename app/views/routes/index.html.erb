@@ -1,0 +1,10 @@
+<!-- app/views/routes/index.html.erb -->
+<h1>All Routes</h1>
+<ul>
+  <% @routes.each do |route| %>
+    <li>
+      <%= route.verb %> <%= route.path.spec.to_s %> =>
+      <%= route.defaults.inspect %>
+    </li>
+  <% end %>
+</ul>

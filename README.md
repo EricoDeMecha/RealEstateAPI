@@ -9,3 +9,8 @@ This is an API sample of an API application for real-estate management
     rail routes
     ```
 - 
+
+### Deployment
+
+#### Render
+Deployed on [https://realestateservicerender.onrender.com/owners](https://realestateservicerender.onrender.com/)
