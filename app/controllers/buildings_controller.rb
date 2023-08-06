@@ -2,17 +2,18 @@ class BuildingsController < ApplicationController
   include ErrorHandling
   before_action :set_building, only: [:show, :update, :destroy]
 
-  #GET /buildings
+  # GET /buildings
   def all
     buildings = Building.all
     render json: buildings, status: :ok
   end
 
-  #GET /buildings/count
+  # GET /buildings/count
   def count
     count = Building.count
-    render json: {count: count}, status: :ok
+    render json: { count: count }, status: :ok
   end
+
   # GET /buildings/:id
   def show
     render json: @building, status: :ok
@@ -41,7 +42,7 @@ class BuildingsController < ApplicationController
   # DELETE /buildings/:id
   def destroy
     @building.destroy
-    render json: { message: "Record Deleted Successfully"}, status: :ok
+    render json: { message: "Record Deleted Successfully" }, status: :ok
   end
 
   private

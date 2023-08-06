@@ -14,18 +14,20 @@ class OwnersController < ApplicationController
     owners = Owner.all
     render json: owners, stats: :ok
   end
-  #GET /owners/count
+
+  # GET /owners/count
   def count
     count = Owner.count
-    render json: {count: count}, status: :ok
+    render json: { count: count }, status: :ok
   end
+
   # POST /owners
   def create
     @owner = Owner.new(owner_params)
     if @owner.save
       render json: @owner, status: :created
     else
-      render json: { error: @owner.errors.full_messages}, status: :unprocessable_entity
+      render json: { error: @owner.errors.full_messages }, status: :unprocessable_entity
     end
   end
 
@@ -34,7 +36,7 @@ class OwnersController < ApplicationController
     if @owner.update(owner_params)
       render json: @owner, status: :ok
     else
-      render json: {error: @owner.errors.full_messages}, status: :unprocessable_entity
+      render json: { error: @owner.errors.full_messages }, status: :unprocessable_entity
     end
   end
 

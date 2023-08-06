@@ -38,7 +38,7 @@ class ServicePaymentsController < ApplicationController
   # DELETE /service_payments/:id
   def destroy
     @service_payment.destroy
-    render json: { message: "Record Deleted Successfully"},status: :ok
+    render json: { message: "Record Deleted Successfully" }, status: :ok
   end
 
   private

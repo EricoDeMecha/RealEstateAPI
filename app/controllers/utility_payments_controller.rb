@@ -6,7 +6,7 @@ class UtilityPaymentsController < ApplicationController
   # GET /tenants/:tenant_id/utility_payments
   def index
     @utility_payments = @tenant.utility_payments
-    render json: @utility_payments,  status: :ok
+    render json: @utility_payments, status: :ok
   end
 
   # GET /utility_payments/:id
@@ -37,7 +37,7 @@ class UtilityPaymentsController < ApplicationController
   # DELETE /utility_payments/:id
   def destroy
     @utility_payment.destroy
-    render json: { message: "Record Deleted Successfully"}, status: :ok
+    render json: { message: "Record Deleted Successfully" }, status: :ok
   end
 
   private

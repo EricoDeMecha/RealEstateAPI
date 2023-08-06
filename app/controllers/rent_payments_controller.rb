@@ -39,7 +39,7 @@ class RentPaymentsController < ApplicationController
   # DELETE /rent_payments/:id
   def destroy
     @rent_payment.destroy
-    render json:  { message: "Rent Payment deleted"}, status: :ok
+    render json: { message: "Rent Payment deleted" }, status: :ok
   end
 
   private
